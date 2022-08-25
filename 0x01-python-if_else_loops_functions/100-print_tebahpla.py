@@ -1,5 +1,3 @@
-#/usr/bin/python3
-for i in range(122, 96, -1):
-    if i % 2 != 0;
-    i = i - 32
-    print("{}".format(cha(i)), end="")
+#!/usr/bin/python3
+for c in range(ord('z'), ord('a') - 1, -2):
+    print("{:c}{:s}".format(c, chr(c - 33)), end="")
