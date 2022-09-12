@@ -5,6 +5,13 @@
 
 
 def safe_print_list_integers(my_list=[], x=0):
+    """print the first x element of a list that are integer
+    Args:
+    my_list (list): the list to print element from x (int):
+    the number of elemtn of my_list to print
+    Returns:
+    the number of elemtn print 
+    """
     ret = 0
     for i in range(0, x):
         try:
