@@ -1,89 +1,106 @@
 #!/usr/bin/python3
-"""This module creates a class named Square"""
+"""creates class Square."""
 
 
 class Square:
-    """A class named Square
-    Attributes:
-    attr1 (size): size of square
+    """ Square class defined
+        Attributes:
+            size (int): Size of square
+            position (tuple): position of space and new lines
     """
-    def __init__(self, size=0):
-        """
+    def __init__(self, size=0, position=(0, 0)):
+        """initializes
         Args:
-        size (int): size for __size attribute of class instance
-        """
-        self.__size = size
-
-    def area(self):
-        """Calculates the area based on size of square
+            size (int): size
+            postion(tuple): postion
         Returns:
-        int: The return value. Returns the area
+            None
         """
-        return self.__size * self.__size
+
+        self.size = size
+        self.position = position
 
     @property
     def size(self):
-        """Gets the size of the class instance"""
+        """
+        getter of size
+        Return:
+            Size of square
+        """
         return self.__size
 
     @size.setter
     def size(self, value):
-        """Sets the size of the class instance"""
+        """
+        Setter of size
+        Args:
+            value (int): size
+        Raises
+            TypeError: if size is not int
+            ValueError: size less than 0
+        Returns:
+            None
+        """
         if type(value) != int:
             raise TypeError("size must be an integer")
-        if value < 0:
+        elif value < 0:
             raise ValueError("size must be >= 0")
-        self.__size = value
+        else:
+            self.__size = value
 
-    def __eq__(self, other):
+    @property
+    def position(self):
         """
-        Args:
-        other (obj): other object of type square for comparison
-        Returns:
-        int: Boolean value. Returns True or False
+        get postion attribute
         """
-        return(self.area() == other.area())
+        return self.__position
 
-    def __ne__(self, other):
+    @position.setter
+    def position(self, value):
         """
+            setter of position
         Args:
-        other (obj): other object of type square for comparison
+            value (tuple): position of the square in 2D space
         Returns:
-        int: Boolean value. Returns True or False
+            None
         """
-        return(self.area() != other.area())
+        if len(value) != 2 or type(value) != tuple:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        if type(value[0]) != int or value[0] < 0:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        if type(value[1]) != int or value[1] < 0:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        self.__position = value
 
-    def __lt__(self, other):
+    def area(self):
         """
-        Args:
-        other (obj): other object of type square for comparison
-        Returns:
-        int: Boolean value. Returns True or False
+        get area
+        Return:
+            area (int)
         """
-        return(self.area() < other.area())
+        return self.__size ** 2
 
-    def __le__(self, other):
+    def my_print(self):
         """
-        Args:
-        other (obj): other object of type square for comparison
+        print a square
         Returns:
-        int: Boolean value. Returns True or False
+            None
         """
-        return(self.area() <= other.area())
+        if self.size == 0:
+            print()
+        else:
+            print('\n'*self.__position[1], end='')
+            for i in range(self.__size):
+                print(' '*self.__position[0], end='')
+                print('#'*self.__size)
 
-    def __gt__(self, other):
+    def __str__(self):
         """
-        Args:
-        other (obj): other object of type square for comparison
-        Returns:
-        int: Boolean value. Returns True or False
+        defining printing behavior of the class
         """
-        return(self.area() > other.area())
-
-    def __ge__(self, other):
-        """
-        Args:
-        other (obj): other object of type square for comparison
-        Returns:
-        int: Boolean value. Returns True or False
-        """
+        if self.__size == 0:
+            return ''
+        new_lines = '\n' * self.position[1]
+        spaces = ' ' * self.position[0]
+        hashes = '#' * self.size
+        return new_lines + '\n'.join(spaces + hashes for e in range(self.size))
