@@ -1,3 +1,3 @@
 -- list all datasbes
 
-SHOW DATABSES;
+SHOW DATABASES;
