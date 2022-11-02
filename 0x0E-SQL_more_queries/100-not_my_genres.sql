@@ -18,8 +18,3 @@ SELECT DISTINCT `name`
 		     ON s.`show_id` = t.`id`
 		     WHERE t.`title` = "Dexter")
  ORDER BY g.`name`;
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-
-    Terms
